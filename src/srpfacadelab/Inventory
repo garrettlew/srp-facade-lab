@@ -1,0 +1,49 @@
+package srpfacadelab;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Inventory {
+    private int carryingCapacity;
+    private List<Item> inventory;
+
+    public Inventory(int carryingCapacity)
+    {
+        inventory = new ArrayList<Item>();
+        carryingCapacity = carryingCapacity;
+    }
+
+    public boolean checkIfItemExistsInInventory(Item item) {
+    for (Item i: inventory) {
+        if (i.getId() == item.getId())
+            return true;
+    }
+    return false;
+}
+
+    public int calculateInventoryWeight() {
+        int sum=0;
+        for (Item i: inventory) {
+            sum += i.getWeight();
+        }
+        return sum;
+    }
+
+    public int getCarryingCapacity() {
+        return carryingCapacity;
+    }
+
+    public void setCarryingCapacity(int carryingCapacity) {
+        this.carryingCapacity = carryingCapacity;
+    }
+
+    public void addItem(Item item)
+    {
+        inventory.add(item);
+    }
+
+    public List<Item> getInventory()
+    {
+        return inventory;
+    }
+}
