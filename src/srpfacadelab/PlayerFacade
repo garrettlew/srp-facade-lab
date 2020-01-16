@@ -1,0 +1,85 @@
+package srpfacadelab;
+
+import java.util.List;
+
+public class PlayerFacade {
+    private final IGameEngine gameEngine;
+    private RpgPlayer player;
+
+    public PlayerFacade(IGameEngine gameEngine)
+    {
+        this.gameEngine = gameEngine;
+        this.player = new RpgPlayer(gameEngine);
+    }
+
+    public void useItem(Item item) {
+        player.useItem(item);
+    }
+
+    public boolean pickUpItem(Item item) {
+        return player.pickUpItem(item);
+    }
+
+    private void calculateStats() {
+        player.calculateStats();
+    }
+
+    public void takeDamage(int damage) {
+        player.takeDamage(damage);
+    }
+
+    public int getHealth() {
+        return player.getHealth();
+    }
+
+    public void setHealth(int health) {
+        player.setHealth(health);
+    }
+
+    public int getMaxHealth() {
+        return player.getMaxHealth();
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        player.setMaxHealth(maxHealth);
+    }
+
+    public int getArmour() {
+        return player.getArmour();
+    }
+
+    private void setArmour(int armour) {
+        player.setArmour(armour);
+    }
+
+
+    public boolean checkIfItemExistsInInventory(Item item) {
+        for (Item i: player.getInventory().getInventory()) {
+            if (i.getId() == item.getId())
+                return true;
+        }
+        return false;
+    }
+
+    public int calculateInventoryWeight() {
+        return player.getInventory().calculateInventoryWeight();
+    }
+
+    public int getCarryingCapacity() {
+        return player.getInventory().getCarryingCapacity();
+    }
+
+    public void setCarryingCapacity(int carryingCapacity) {
+        player.getInventory().setCarryingCapacity(carryingCapacity);
+    }
+
+    public void addItem(Item item)
+    {
+        player.getInventory().addItem(item);
+    }
+
+    public List<Item> getInventory()
+    {
+        return player.getInventory().getInventory();
+    }
+}
